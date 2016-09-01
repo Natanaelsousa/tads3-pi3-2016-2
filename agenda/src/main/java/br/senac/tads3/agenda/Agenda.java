@@ -47,18 +47,7 @@ public class Agenda extends ConexaoBD {
       // 1) Abrir conexao
     PreparedStatement stmt = null;
     Connection conn = null;  
-    
-    
-    String sql = "SELECT * FROM TB_CONTATO" ;
-    
-       if (conn != null) {
-	try {
-	  conn.close();
-	} catch (SQLException ex) {
-	  System.out.println("Erro ao fechar conn.");
-	}
-      }
-    
+     
   }
   
   public void incluir() {
