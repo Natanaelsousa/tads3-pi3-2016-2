@@ -42,6 +42,25 @@ public class Agenda extends ConexaoBD {
     
   }
   
+  
+  public void alterar(){
+      // 1) Abrir conexao
+    PreparedStatement stmt = null;
+    Connection conn = null;  
+    
+    
+    String sql = "SELECT * FROM TB_CONTATO" ;
+    
+       if (conn != null) {
+	try {
+	  conn.close();
+	} catch (SQLException ex) {
+	  System.out.println("Erro ao fechar conn.");
+	}
+      }
+    
+  }
+  
   public void incluir() {
     
     System.out.print("Digite o nome completo do contato: ");
@@ -120,6 +139,7 @@ public class Agenda extends ConexaoBD {
       System.out.println("***** DIGITE UMA OPÇÃO *****");
       System.out.println("(1) Listar contatos");
       System.out.println("(2) Incluir novo contato");
+      System.out.println("(3) Alterar um contato");
       System.out.println("(9) Sair");
       System.out.print("Opção: ");
       
@@ -127,9 +147,13 @@ public class Agenda extends ConexaoBD {
       int opcao = Integer.parseInt(strOpcao);
       switch (opcao) {
 	case 1:
+            instancia.listar();
 	  break;
 	case 2:
 	  instancia.incluir();
+	  break;
+        case 3:
+	  instancia.alterar();
 	  break;
 	case 9:
 	  System.exit(0);
