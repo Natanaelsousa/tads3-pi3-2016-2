@@ -7,6 +7,7 @@ package br.senac.tads3.agenda;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -24,23 +25,23 @@ public class Agenda extends ConexaoBD {
   
   private static Scanner entrada = new Scanner(System.in);
   
-  public void listar(){
+  public void listar() throws SQLException, ClassNotFoundException{
       // 1) Abrir conexao
     PreparedStatement stmt = null;
     Connection conn = null;  
     
-    
-    String sql = "SELECT * FROM TB_CONTATO" ;
-    
-       if (conn != null) {
-	try {
-	  conn.close();
+    try{
+    conn = obterConexao();  
+    String sql = "SELECT * FROM TB_CONTATO";
+        System.out.println(stmt.executeQuery(sql)); 
+          
 	} catch (SQLException ex) {
+           conn.close(); 
 	  System.out.println("Erro ao fechar conn.");
 	}
       }
-    
-  }
+
+  
   
   
 public void alterar(){
@@ -185,7 +186,7 @@ public void alterar(){
     
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws SQLException, ClassNotFoundException {
     Agenda instancia = new Agenda();
 
     do {
